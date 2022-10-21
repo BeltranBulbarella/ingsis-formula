@@ -1,6 +1,9 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.operators.*;
 import org.junit.Test;
+
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,7 +16,8 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction1() {
-        final Double result = 7d;
+        Function f = new Sum(new Number(1.0), new Number(6.0));
+        final Double result = f.calculate(Map.of());
 
         assertThat(result, equalTo(7d));
     }
@@ -23,7 +27,8 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction2() {
-        final Double result = 6d;
+        Function f = new Div(new Number(12.0), new Number(2.0));
+        final Double result = f.calculate(Map.of());
 
         assertThat(result, equalTo(6d));
     }
@@ -33,7 +38,9 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction3() {
-        final Double result = 13.5;
+        Function f = new Div(new Number(9.0), new Number(2.0));
+        Function f2 = new Mul(f, new Number(3.0));
+        final Double result = f2.calculate(Map.of());
 
         assertThat(result, equalTo(13.5d));
     }
@@ -43,7 +50,9 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction4() {
-        final Double result = 20.25;
+        Function f = new Div(new Number(27.0), new Number(6.0));
+        Function f2 = new Pow(f, new Number(2.0));
+        final Double result = f2.calculate(Map.of());
 
         assertThat(result, equalTo(20.25d));
     }
@@ -53,7 +62,9 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction5() {
-        final Double result = 6d;
+        Function f = new Div(new Number(1.0), new Number(2.0));
+        Function f2 = new Pow(new Number(36.0), f);
+        final Double result = f2.calculate(Map.of());
 
         assertThat(result, equalTo(6d));
     }
@@ -63,7 +74,8 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction6() {
-        final Double result = 136d;
+        Function f = new Abs(new Number(136.0));
+        final Double result = f.calculate(Map.of());
 
         assertThat(result, equalTo(136d));
     }
@@ -73,7 +85,8 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction7() {
-        final Double result = 136d;
+        Function f = new Abs(new Number(-136.0));
+        final Double result = f.calculate(Map.of());
 
         assertThat(result, equalTo(136d));
     }
@@ -83,7 +96,9 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction8() {
-        final Double result = 0d;
+        Function f = new Subt(new Number(5.0), new Number(5.0));
+        Function f2 = new Mul(new Number(8.0), f);
+        final Double result = f2.calculate(Map.of());
 
         assertThat(result, equalTo(0d));
     }
