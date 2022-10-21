@@ -14,7 +14,7 @@ public class Variable implements Function{
 
     @Override
     public Double calculate(Map<String, Double> variables) {
-        return null;
+        return variables.get(name);
     }
 
     @Override
