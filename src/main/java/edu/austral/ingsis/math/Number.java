@@ -25,7 +25,7 @@ public class Number implements Function{
     }
 
     @Override
-    public List<String> listVariables() {
+    public List<String> listVariables(List<String> variables) {
         return List.of();
     }
 }

@@ -4,6 +4,8 @@ import edu.austral.ingsis.math.Function;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Sqrt implements Function {
 
@@ -21,8 +23,8 @@ public class Sqrt implements Function {
     }
 
     @Override
-    public List<String> listVariables() {
-        return null;
+    public List<String> listVariables(List<String> variables) {
+        return Stream.concat(f1.listVariables(variables).stream(), f2.listVariables(variables).stream()).collect(Collectors.toList());
     }
 
     public String toString(){

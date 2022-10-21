@@ -4,6 +4,8 @@ import edu.austral.ingsis.math.Function;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Abs implements Function {
 
@@ -19,8 +21,8 @@ public class Abs implements Function {
     }
 
     @Override
-    public List<String> listVariables() {
-        return null;
+    public List<String> listVariables(List<String> variables) {
+        return f1.listVariables(variables);
     }
 
     public String toString(){

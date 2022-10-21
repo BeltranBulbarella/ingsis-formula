@@ -23,8 +23,8 @@ public class Parenthesis implements Function {
     }
 
     @Override
-    public List<String> listVariables() {
-        return null;
+    public List<String> listVariables(List<String> variables) {
+        return List.of();
     }
 
 }

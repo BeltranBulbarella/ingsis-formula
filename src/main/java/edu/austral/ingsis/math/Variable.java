@@ -1,8 +1,11 @@
 package edu.austral.ingsis.math;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Variable implements Function{
 
@@ -18,8 +21,10 @@ public class Variable implements Function{
     }
 
     @Override
-    public List<String> listVariables() {
-        return List.of(name);
+    public List<String> listVariables(List<String> variables) {
+        List<String> names = new ArrayList<>();
+        names.add(name);
+        return Stream.concat(variables.stream(), names.stream()).collect(Collectors.toList());
     }
 
     @Override

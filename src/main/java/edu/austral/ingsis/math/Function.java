@@ -9,5 +9,5 @@ public interface Function {
 
     public Double calculate(Map<String,Double> variables);
 
-    public List<String> listVariables();
+    public List<String> listVariables(List<String> variables);
 }
