@@ -1,9 +1,8 @@
 package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.composite.operators.*;
 import edu.austral.ingsis.math.composite.operators.Number;
+import edu.austral.ingsis.math.composite.operators.*;
 import org.junit.Test;
-
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

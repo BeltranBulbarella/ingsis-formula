@@ -6,7 +6,6 @@ import edu.austral.ingsis.math.visitor.operand.*;
 import edu.austral.ingsis.math.visitor.utils.Number;
 import edu.austral.ingsis.math.visitor.utils.Variable;
 import edu.austral.ingsis.math.visitor.visit.ListVariableVisitor;
-import edu.austral.ingsis.math.visitor.visit.PrintVisitor;
 import org.junit.Test;
 
 import java.util.List;
