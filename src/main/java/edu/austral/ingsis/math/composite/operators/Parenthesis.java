@@ -1,6 +1,4 @@
-package edu.austral.ingsis.math.operators;
-
-import edu.austral.ingsis.math.Function;
+package edu.austral.ingsis.math.composite.operators;
 
 import java.util.List;
 import java.util.Map;

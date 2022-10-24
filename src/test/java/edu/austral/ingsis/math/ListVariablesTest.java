@@ -1,6 +1,7 @@
 package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.operators.*;
+import edu.austral.ingsis.math.composite.operators.*;
+import edu.austral.ingsis.math.composite.operators.Number;
 import org.junit.Test;
 
 import java.util.Collections;

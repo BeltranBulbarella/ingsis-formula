@@ -1,4 +1,4 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.composite.operators;
 
 import java.util.List;
 import java.util.Map;
