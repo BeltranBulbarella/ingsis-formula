@@ -13,6 +13,9 @@ public class CalculateVisitor implements Visitor<Double> {
     public CalculateVisitor(Map<String, Double> variableValues) {
         this.variableValues = variableValues;
     }
+    public CalculateVisitor() {
+        this(Map.of());
+    }
 
     @Override
     public Double visitSum(Sum operand) {

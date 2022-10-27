@@ -8,6 +8,7 @@ import edu.austral.ingsis.math.visitor.utils.Variable;
 import edu.austral.ingsis.math.visitor.visit.CalculateVisitor;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -21,12 +22,9 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction1() {
-        final Function function = new Sum(
-                new Number(1.0),
-                new Variable("x")
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("x",3.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("x",3d));
+        final Double result = visitor.visitSum(new Sum(new Number(1.0), new Variable("x")));
+
 
         assertThat(result, equalTo(4d));
     }
@@ -36,12 +34,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction2() {
-        final Function function = new Div(
-                new Number(12.0),
-                new Variable("div")
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("div",4.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("div",4d));
+        final Double result = visitor.visitDiv(new Div(new Number(12.0), new Variable("div")));
 
         assertThat(result, equalTo(3d));
     }
@@ -51,15 +45,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction3() {
-        final Function function = new Mul(
-                new Div(
-                        new Number(9.0),
-                        new Variable("x")
-                ),
-                new Variable("y")
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("x",3.0, "y", 4.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("x",3d,"y",4d));
+        final Double result = visitor.visitMul(new Mul(new Par(new Div(new Number(9.0), new Variable("x"))), new Variable("y")));
 
         assertThat(result, equalTo(12d));
     }
@@ -69,15 +56,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction4() {
-        final Function function = new Pow(
-                new Div(
-                        new Number(27.0),
-                        new Variable("a")
-                ),
-                new Variable("b")
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("a",9.0, "b",3.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("a",9d,"b",3d));
+        final Double result = visitor.visitPow(new Pow(new Par(new Div(new Number(27.0), new Variable("a"))), new Variable("b")));
 
         assertThat(result, equalTo(27d));
     }
@@ -87,12 +67,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction5() {
-        final Function function = new Pow(
-                new Variable("z"),
-                new Number(0.5)
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("z",36.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("z",36d));
+        final Double result = visitor.visitPow(new Pow(new Variable("z"), new Div(new Number(1.0), new Number(2.0))));
 
         assertThat(result, equalTo(6d));
     }
@@ -102,14 +78,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction6() {
-        final Function function = new Subt(
-                new Abs(
-                        new Variable("value")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("value",8.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("value",8d));
+        final Double result = visitor.visitSubt(new Subt(new Abs(new Variable("value")), new Number(8.0)));
 
         assertThat(result, equalTo(0d));
     }
@@ -119,14 +89,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction7() {
-        final Function function = new Subt(
-                new Abs(
-                        new Variable("value")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("value",8.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("value",8d));
+        final Double result = visitor.visitSubt(new Subt(new Abs(new Variable("value")), new Number(8.0)));
 
         assertThat(result, equalTo(0d));
     }
@@ -136,15 +100,8 @@ public class ResolutionWithVariablesTest {
      */
     @Test
     public void shouldResolveFunction8() {
-        final Function function = new Mul(
-                new Subt(
-                        new Number(5.0),
-                        new Variable("i")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<Double> visitor = new CalculateVisitor(Map.of("i",2.0));
-        final Double result = function.accept(visitor);
+        final Visitor<Double> visitor = new CalculateVisitor(Map.of("i",2d));
+        final Double result = visitor.visitMul(new Mul(new Par(new Subt(new Number(5.0), new Variable("i"))), new Number(8.0)));
 
         assertThat(result, equalTo(24d));
     }

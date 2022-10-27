@@ -1,14 +1,13 @@
 package edu.austral.ingsis.math.visitor.operand;
 
-import edu.austral.ingsis.math.visitor.interfaces.Function;
 import edu.austral.ingsis.math.visitor.interfaces.Visitable;
 import edu.austral.ingsis.math.visitor.interfaces.Visitor;
 
-public class Abs implements Function, Visitable {
+public class Abs implements Visitable {
 
-    final private Function f1;
+    final private Visitable f1;
 
-    public Abs(Function f1) {
+    public Abs(Visitable f1) {
         this.f1 = f1;
     }
 
@@ -17,7 +16,7 @@ public class Abs implements Function, Visitable {
         return visitor.visitAbs(this);
     }
 
-    public Function getF1() {
+    public Visitable getF1() {
         return f1;
     }
 

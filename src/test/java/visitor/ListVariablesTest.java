@@ -16,18 +16,15 @@ import static org.hamcrest.Matchers.empty;
 
 
 public class ListVariablesTest {
+    final private static Visitor<List<String>> visitor = new ListVariableVisitor();
 
     /**
      * Case 1 + 6
      */
     @Test
     public void shouldListVariablesFunction1() {
-        final Function function = new Sum(
-                new Number(1.0),
-                new Number(6.0)
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitSum(new Sum(new Number(1.0), new Number(6.0)));
+        assertThat(result, empty());
 
         assertThat(result, empty());
     }
@@ -37,13 +34,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction2() {
-        final Function function = new Div(
-                new Number(12.0),
-                new Variable("div")
-        );
-
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitDiv(new Div(new Number(12.0), new Variable("div")));
 
         assertThat(result, containsInAnyOrder("div"));
     }
@@ -53,15 +44,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction3() {
-        final Function function = new Mul(
-                new Div(
-                        new Number(9.0),
-                        new Variable("x")
-                ),
-                new Variable("y")
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitMul(new Mul(new Div(new Number(9.0), new Variable("x")), new Variable("y")));
 
         assertThat(result, containsInAnyOrder("x", "y"));
     }
@@ -71,15 +54,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction4() {
-        final Function function = new Pow(
-                new Div(
-                        new Number(27.0),
-                        new Variable("a")
-                ),
-                new Variable("b")
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitPow(new Pow(new Div(new Number(27.0), new Variable("a")), new Variable("b")));
 
         assertThat(result, containsInAnyOrder("a", "b"));
     }
@@ -89,12 +64,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction5() {
-        final Function function = new Pow(
-                new Variable("z"),
-                new Number(0.5)
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+       final List<String> result = visitor.visitPow(new Pow(new Variable("z"), new Div(new Number(1.0), new Number(2.0))));
 
         assertThat(result, containsInAnyOrder("z"));
     }
@@ -104,15 +74,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction6() {
-        final Function function = new Subt(
-                new Abs(
-                        new Variable("value")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
-
+        final List<String> result = visitor.visitSubt(new Subt(new Abs(new Variable("value")), new Number(8.0)));
         assertThat(result, containsInAnyOrder("value"));
     }
 
@@ -121,14 +83,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction7() {
-        final Function function = new Subt(
-                new Abs(
-                        new Variable("value")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitSubt(new Subt(new Number(8.0), new Abs(new Variable("value"))));
 
         assertThat(result, containsInAnyOrder("value"));
     }
@@ -138,15 +93,7 @@ public class ListVariablesTest {
      */
     @Test
     public void shouldListVariablesFunction8() {
-        final Function function = new Mul(
-                new Subt(
-                        new Number(5.0),
-                        new Variable("i")
-                ),
-                new Number(8.0)
-        );
-        final Visitor<List<String>> visitor = new ListVariableVisitor();
-        final List<String> result = function.accept(visitor);
+        final List<String> result = visitor.visitMul(new Mul(new Subt(new Number(5.0), new Variable("i")), new Number(8.0)));
 
         assertThat(result, containsInAnyOrder("i"));
     }

@@ -1,16 +1,15 @@
 package edu.austral.ingsis.math.visitor.operand;
 
 
-import edu.austral.ingsis.math.visitor.interfaces.Function;
 import edu.austral.ingsis.math.visitor.interfaces.Visitable;
 import edu.austral.ingsis.math.visitor.interfaces.Visitor;
 
-public class Div implements Function, Visitable {
+public class Div implements Visitable {
 
-    private final Function f1;
-    private final Function f2;
+    private final Visitable f1;
+    private final Visitable f2;
 
-    public Div(Function f1, Function f2) {
+    public Div(Visitable f1, Visitable f2) {
         this.f1 = f1;
         this.f2 = f2;
     }
@@ -20,11 +19,11 @@ public class Div implements Function, Visitable {
         return visitor.visitDiv(this);
     }
 
-    public Function getF1() {
+    public Visitable getF1() {
         return f1;
     }
 
-    public Function getF2() {
+    public Visitable getF2() {
         return f2;
     }
 

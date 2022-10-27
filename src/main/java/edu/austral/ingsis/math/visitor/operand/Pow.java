@@ -1,15 +1,14 @@
 package edu.austral.ingsis.math.visitor.operand;
 
-import edu.austral.ingsis.math.visitor.interfaces.Function;
 import edu.austral.ingsis.math.visitor.interfaces.Visitable;
 import edu.austral.ingsis.math.visitor.interfaces.Visitor;
 
-public class Pow implements Function, Visitable {
+public class Pow implements Visitable {
 
-    final private Function f1;
-    final private Function f2;
+    final private Visitable f1;
+    final private Visitable f2;
 
-    public Pow(Function f1, Function f2) {
+    public Pow(Visitable f1, Visitable f2) {
         this.f1 = f1;
         this.f2 = f2;
     }
@@ -19,11 +18,11 @@ public class Pow implements Function, Visitable {
         return visitor.visitPow(this);
     }
 
-    public Function getF1() {
+    public Visitable getF1() {
         return f1;
     }
 
-    public Function getF2() {
+    public Visitable getF2() {
         return f2;
     }
 

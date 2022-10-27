@@ -5,12 +5,12 @@ import edu.austral.ingsis.math.visitor.interfaces.Function;
 import edu.austral.ingsis.math.visitor.interfaces.Visitable;
 import edu.austral.ingsis.math.visitor.interfaces.Visitor;
 
-public class Subt implements Function, Visitable {
+public class Subt implements Visitable {
 
-    private final Function f1;
-    private final Function f2;
+    private final Visitable f1;
+    private final Visitable f2;
 
-    public Subt(Function f1, Function f2) {
+    public Subt(Visitable f1, Visitable f2) {
         this.f1 = f1;
         this.f2 = f2;
     }
@@ -20,11 +20,11 @@ public class Subt implements Function, Visitable {
         return visitor.visitSubt(this);
     }
 
-    public Function getF1() {
+    public Visitable getF1() {
         return f1;
     }
 
-    public Function getF2() {
+    public Visitable getF2() {
         return f2;
     }
 }
